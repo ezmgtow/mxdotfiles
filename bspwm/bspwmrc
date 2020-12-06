@@ -1,0 +1,54 @@
+#! /bin/sh
+
+killall "sxhkd"
+sxhkd &
+
+#bspc monitor -d 1 2 3 4 5 6 7
+#bspc monitor eDP-1 -d 1 2 3 4 5 6 7
+bspc monitor LVDS-1 -d 1 2 3 4 5 6 7
+bspc monitor HDMI-1 -d 8 9 0
+
+bspc config border_width         1
+bspc config window_gap          0
+bspc config normal_border_color	"#090909"
+#bspc config normal_border_color	"#070709"
+bspc config focused_border_color "#FFBF00" #burning gold
+#bspc config focused_border_color "#00ddbf" #aqua
+#bspc config focused_border_color "#9F8A42" #luxor gold
+#bspc config focused_border_color "#d4af37" #gold
+#bspc config focused_border_color "#BF9B30" #deep gold
+#bspc config focused_border_color "#999999"
+
+bspc config split_ratio          0.51
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+#bspc config single_monocle	 true
+
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a firefox state=monocle
+#bspc rule -a mplayer2 state=floating
+bspc rule -a pavucontrol state=floating
+bspc rule -a galculator state=floating
+bspc rule -a zathura state=fullscreen
+bspc rule -a mpv state=fullscreen
+bspc rule -a rofi focus=on
+#bspc rule -a Screenkey manage=off
+
+killall "polybar"
+~/.config/polybar/launch.sh &
+
+#sleep 2 ; mate-mouse-properties ; sleep 2 ; kill -9 `pidof mate-mouse-properties`
+
+xsetroot -cursor_name left_ptr
+
+xfce4-terminal -e "sudo service log2ram start"
+
+#xsetbg -fullscreen ~/Downloads/maxim-potkin-J5yXIQnmYhM-unsplash.jpg
+
+#pgrep bspswallow || bspswallow &
+
+#to empty the temp directory of bspdragtofloat (i disabled it for now, not using it)
+#[[ "$1" -eq 0 ]] \
+    #&& find "~/.config/bspwm/tmp" -type f -exec rm -- {} ';'
+
+    #&& find "$BSPWM_DIR/tmp" -type f -exec rm -- {} ';'

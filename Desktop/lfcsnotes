@@ -1,0 +1,658 @@
+
+exit, logout	(logout)(actually, 'exit' is quitting the shell, while 'logout' is logging out the user, but in this context they 
+			 both achieve the same result.)
+
+The 7 essential commands: whoami	(tells you your login name)
+			hostname	(tells you the name of the computer that you are working on)
+			date		(used to set the date and time)
+			uname		(shows you some more information about your system and what it is doing)
+			passwd		(allows a user to change his password, and the root to change the passwords of all the other
+					 users)
+			touch		(used to create empty files, helps you test if you can write in certain locations)
+			last		(shows a list of users who have recently logged in)
+
+Ctrl-Shift-Plus		(increase terminal's font size)
+Ctrl-minus	(to decrease font size)
+Ctrl-l		('L', clear the terminal screen)
+
+whoami --help
+
+hostname --help | less (if the output is too long to fit on the screen)(hit SPACEBAR to go to next page inside 'less')('q' to quit
+			less)('g' to go to beginning, 'G' to go to end, '/' to search)
+
+date	(shows current date and time if used without any options)
+passwd	(prompts you for your current password, then for the new password of your choosing)
+
+-------------
+
+man	(is used to get help about commands, configuration files and other topics on linux)
+section 1 : user commands	(commands that users without admin privileges can run)
+section 4 : devices	(such as hard disks and other devices which are connected to your computer)
+section 5 : config files	(readable text files, mostly in the /etc directory)
+section 8 : sysadmin commands	 (commands which require you to be the root user in order to use them)
+
+man 8 useradd	(an example of how to get documentation from a specific section)
+man -a passwd	('-a' will list all available sections with content matching that topic)
+		(for exmp, this will show you the command from section 1, then when you press 'q' to quit will show you its config
+		 file from section 5)
+In the man pages, the SYNOPSIS (where it shows you the usage) is broken up into different blocks depending on how many different
+ uses the command has.
+	In the SYNOPSIS, | means select ONLY ONE of the options presented. Square brackets [] are optional, curly brackets {} are
+	 required.
+man man	(shows you all the 8 different ways to use the man command, as well as all 9 section names, and other info)
+man sections    2:System Calls(functions provided by the kernel), 3:Library Calls(functions within program libraries),
+		4:Special Files(usuallt found in /dev),6:Games, 7:Misc(including macro packages and conventions, 
+		9:Kernel Routines(Non Standard).
+man -k user	('-k' is keyword search, shows you a list of any entries containing the keyword 'user' in either the name or the
+		 description)
+man -k user | grep 8	(filter for entries relating to the sysadmin [i.e. root]) 
+
+mandb	(command used to create or update manual page index caches)(you need to be root or use 'sudo' to actually do anything)
+	(you can run this command if you type in something like 'man -k user' and for some reason it says 'nothing appropriate')
+
+apropos user	(apropos is an alias to 'man -k', so this is EXACTLY THE SAME as 'man -k user')
+
+-------------
+
+The disadvantage of the 'man' command is that its output can be overwhelming.
+So, you should also know how to use '--help'.
+
+passwd --help	(gives you a short overview of what you can do with 'passwd'. Just the usage and options briefly.)
+
+------------
+
+BASH FEATURES
+tab completion, history (history is persistent, stores previous sessions), redirection (stdin'<',stdout'>,>>',stderr'2>'), piping
+ (|).
+Piping means that the output of the first command acts as the input of the second command (filtering).
+
+ps aux | grep httpd
+
+find /proc -name "cpu*" 2> /dev/null	(since you are not root, this find command will generate a lot of error messages, so
+					 redirect those to null)
+					(this results in a clean, easy-to-read list)
+lvcreate --help 2>/dev/null | less	(get rid of that ugly warning at the end nagging that you're not a superuser)
+  
+wc (lines words characters)
+
+!28	(run the 28th line in the ~/.bash_history file)
+If user logs out normally or the shell is closed normally (without any crash), that is when the .bash_history file is updated.
+	The .bash_history file is read the next time the shell is opened.
+less .bash_history	(shows you the contents without numbering the lines i.e. just a list of commands, one on each line)
+
+USING BASH SHELL SCRIPTS
+echo who > myscript
+echo ls >> myscript
+cat myscript (to see the contents of the new shell script [just the words 'who' and 'ls' on seperate lines])
+chmod +x myscript (to make it executable)
+./myscript (to run it from the current directory)
+
+-------------
+
+FILESYSTEM HIERARCHY
+/usr	(where you will find many operating system files)
+/var	(contains diverse information such as log files and cache files)
+/dev	(contains all device files)
+
+A mount is a connection that exists between a directory and a different device [partition].
+
+FHS is a standard which defines common locations for common files on linux distributions.
+FHS also has a man page (as long as it's installed on your computer).
+
+su - (opens a root shell i.e. switches you to root user and puts you in the /root [root's home] directory)
+
+man hier	(man page describing the filesystem hierearchy)
+
+/bin and /sbin	(essential binaries and essential system binaries which should always be accessible)(on ?'kerneled'? linux they may
+		 be symlinked to /usr/bin and /usr/sbin)
+/boot	(contains everything that is needed to start your system, including the kernel [vmlinuz-...])
+/dev	(is a directory generated by the operating system. It contains devices. On linux, system devices are needed to access
+	 specific hardware.)
+/proc 	(is a kernel interface)
+/sys	(used for hardware settings)
+/lib and /lib64	(contain libraries that are used by the binaries in /bin and /sbin, so these 4 directories all belong together)
+
+The idea of a library is that normally a binary does not contain all of the code needed to run a command.
+
+/opt	(is an optional directory which in many cases is empty)
+/run	(its purpose is to write runtime information about what the operating system is doing. Contains many *.pid files, among
+	 others.)
+	(PID files show everybody a slice of what is an active process is doing. /run is like a new temporary directory)
+/srv 	(is used by SOME distributions for services [web services, ftp services and more] to write the configuration into.)
+/tmp 	(is for temporary files)
+/usr	(is like 'Program Files' on Windows. Contains a LOT of files. Contains its own /bin /sbin /lib /lib64. /usr/local is
+	 recommended for you to put in your local files. /usr/share is for files you want to share with others. /usr/src may
+	 contain source code. Source Code is program code that is readable in the C programming language. The /usr directory is
+	 typically very big.)
+/var	(used to create dynamic information. /var/log, on a real server, can grow real big real fast. On a RedHat system, your 
+	 webserver document route is in /var [that is different on some other linux distributions], so not everything in /var is of
+	 a volatile nature. Some of its contents may be important as well.)
+
+--------------
+
+ls
+ls -l	(shows you file properties. the '-l' stands for 'long')
+	("Special" files have a letter in the first column [d,l,s...] whereas normal files just have a dash '-')
+
+	 filetypePERMISSIONS #oflinks USERowner GROUPowner FILEsize CREATIONdateANDcreationTIME fileNAME
+
+ls -a	(shows hidden files)(you'll notice as an administrator that when 'ls -a' is used on a user's home directory, it gives you a
+			     lot of information)
+ls -lrt		(sorting based on time: the most recently modified file is listed last. Useful in /var/log.)
+ls -l /etc	(shows you the contents of /etc in long format)
+ls -ld /etc	(only shows you the properties of the directory itself, not its contents)('-d' stands for 'directory')
+
+-------------
+
+GLOBBING
+* ? [a-z]
+
+ls a*, ls ca?, ls ca[bt] (cat or cab), ls ca[b-t] (any character between and including b through t)
+ls [a-d]??*	(starts with a,b,c or d, followed by at least two characters [then by a random amout of any other characters or no
+		 additional characters)
+ls a*	(if there is a directory that starts with a, then it will show the direct contents of that directory in addition to files
+	 that start with 'a'.)
+ls -d a*	(only show files and directories that start with 'a', and not their contents) (by 'direct contents' I mean just one
+		 level, not all subdirectories' contents)
+
+------------
+
+CP
+You can use 'cp' to copy multiple files into a directory:
+	cp file1 file2 file3 file4 destinationdirectory/
+cp /etc/hosts .		(copy the /etc/hosts file to your current directory [.])
+cp -R /tmp .	(Recursively copy the directory and all of its subdirectories and files into your current directory)
+cp /etc/hosts ~/newfile		(copy a the hosts file into a file named 'newfile')
+cp /etc/hosts ~/newdirectory/	(will not work, will not create the new directory)(not that the '/' at the end is needed to signify
+				 the directory)
+It is good practice to always put a slash behind the directory name just to make sure that things work properly.
+cp /etc/hosts /tmp/data/files/john/ 	(the '/' at the end is just for good practice)
+cp hosts ../../files/john/newfile 	(assuming you are in the whatever /tmp/data/ directory)
+
+DIRECTORIES
+mkdir -p files/john ('-p' creates parent directories as needed, otherwise will not work if the 'files' directory doesn't already
+		     exist)
+
+ls -R	('-R' is for recursive, shows you the entire filesystem structure)
+rmdir videos/	(will ONLY work if the directory is already EMPTY. In that case, you must use 'rm -rf videos/'.)
+cd ../..	(go up [i.e. back] two levels in the directory tree)
+mv /tmp/testfile ~
+
+rm -r /etc	('-r' is recursive, allows you to remove a directory that still has files in it. Will prompt you for each file.)
+rm -- -myfile	(if you have a filename that starts with a special character, such as a '-', then you need to put '--' in front of
+		 it first, otherwise it will mistake -myfile for an option '-m' and complain)
+
+The linux filesystem uses the concept of the 'INODE'. The inode is the complete administration of the file. Within the inode, you
+ will find information about the owner, permission, creation time, modification time, and the inode will also refer to the actual
+ BLOCK that the file is using as well. The only thing that does NOT exist in the inode is the NAME of the file. The NAME of the file is stored in the directory, and from the name there is a pointer to the inode. So the name knows which inode to use. In other 
+ words, the NAME is a HARDLINK. In linux, you can have multiple names pointing to the same inode. All names pointing to the same
+ inode are equal, so it doesn't matter which name you are using. There is no difference between the original name and the 2nd name
+ that you created, because the inode doesn't know which names it has. So if you remove NAME1, you can still access that inode
+ through NAME2.
+
+HARDLINK LIMITATIONS: 1- The hardlink must be on the SAME DEVICE.
+		      2- No directories. You cannot create a hardlink to a directory.
+
+A SYMBOLIC LINK (or SOFTLINK) points to a hardlink. It does NOT go directly to the inode-- it goes to a filename. This makes it a
+ little more fragile, because if somebody removes (moves, deletes or renames) the original file, then the softlink becomes invalid
+ (broken link).
+Symbolic links are more flexible. You CAN create symbolic links to other devices, and also to a DIRECTORY.
+
+ln /etc/hosts myhosts (creates HARDLINK myhosts which has the same size and inode number as hosts when you look at it with 'ls -l')
+	If you 'echo Hello >> myhosts', then the same file which both hardlinks are pointing to is changed.
+ln -s hosts symhosts	(creates a SYMBOLIC LINK ['-s'] from symhosts to the original 'hosts'. If you look at it with 'ls -l', you
+			 will see that 'symhosts' is a tiny file, with its own unique inode number, pointing to the original 'hosts'
+			 file. The permissions section will also begin with an 'l' to show that it is a softlink. The 'symhosts'
+			 file will have a size of 7 bytes, because the name of the file it is pointing to ['myhosts' is 7 characters
+			 long.)
+If you try to 'cat symhosts' after deleting the 'myhosts' file it is pointing to, then bash will say "No such file or directory"
+ because it isn't referring to the softlink itself, but to the file that it was pointing to.
+You can 'restore' a broken softlink by recreating the file it was pointing to in the same place it used to be, then the softlink
+ will continue to function normally.
+
+ln -s /etc/ etc	    (to easily create a link to a directory. You can 'cd etc' and it will behave as if you have 'cd'ed into the
+		     original directory.)
+If you 'rm etc', it will recognize it as a symbolic link and ONLY remove the link (after prompting you), not the directory itself.
+
+!!! HOWEVER, 'rm etc/*' WILL FOLLOW THE LINK THROUGH INTO THE LINKED DIRECTORY AND DELETE EVERYTHING! NEVER EVER DO THIS!!!!!!!!!!! 
+
+--------------
+
+FIND
+
+find /etc -name hosts	(will find ONLY the file 'hosts' EXACTLY)
+find /etc -name *hosts*		(WILL NOT WORK, because the shell is trying to interperet the '*' character natively)
+find /etc -name "*hosts*" 	(will work properly) (the "double quotes" tells the shell to not interperet it natively. Using "" 
+				 in the find command is very important.)
+find / -user "student"		(will find all files that belong to the user 'student')
+The 'man find' is very rich. It includes options such as '-amin n', '-mmin n' and '-cnever filename'.
+
+mkdir -p directory/subdirectory
+find /etc -name "*hosts*" -exec cp {} directory/subdirectory \;        	('-exec' executed the next instruction on the results of
+									 the find command)
+				( {} refers to each result of the find command. The exec command needs to be closed with '\;')
+				(the ';' has a meaning to the bash, so we escape it with a '\' so that find interprets it, not the
+				 bash shell)
+	  -size n[cwkMG]    (you can use 'n' for the exact number only, '-n' for less than and '+n' for bigger than)(M=Megabytes,
+	  		     G=Gigabytes,k=kilo)
+find /etc -size +100k 2>/dev/null	(to clean up permission errors) 
+find /etc -size +100k -exec cp {} directory/subdirectory \;	(you cannot put 2>/dev/null before '-exec'. Anyway, the errors will
+								 not be copied as files. By the way, this exec copies all the files
+								 TO the directory/subdirectory dir.)
+
+For some reason, the 'c' option in '-size 1000c' ('c' for bytes) didn't work for me (UPDATE: it worked on ubuntu). I had to use
+ '1k' instead of '1000c', otherwise the find command just runs the 'exec' potion on every file in the directory. 
+
+HOW TO COPY FILES WHICH HAVE SPECIFIC CONTENTS:
+mkdir dir/subdir	(use '-p' if 'dir' does not exist)
+grep student /etc* 2>/dev/null	(just an example of grep by itself-- searches files to see which ones have 'student' in their
+				 contents, prints out that specific line with the filename at the beginning)
+grep -l student /etc* 2>/dev/null	('-l' will list the filenames only, without printing out the line itself)
+
+find /etc -exec grep -l student {} \; 2>/dev/null	(better than grep by itself, because find will traverse subdirectories as
+							 well)
+find /etc -exec grep -l student {} \; -exec cp {} dir/subdir/ \; 2>/dev/null	(to copy the matching files into the new directory)
+
+We used FIND instead of GREP because GREP can't copy the resulting files, whereas FIND can.
+
+cp /etc/[a-c]* /tmp/newdir/	(copy all files which start with a,b or c into the new directory)
+mv [ab]* 2nddir/	(move all files starting with an a or b to 2nddir)
+
+ln -s /var .	(will automatically create a symlink named 'var' in the current directory, which links to the /var directory)
+ln -s /var var  (has the same result as above)
+
+-------------
+
+VIM
+u = undo, Ctrl-r = redo. Can undo all the way back to the creation of the document.
+o = create a new line below your position, move to it and insert. 'O' is the same thing but a line above your current position.
+n = next match of search, N = previous match.
+:300 = go directly to the 300th line
+dd = delete current line (more accurately, to CUT it and put it into the BUFFER, so that you can PASTE it using 'p')
+d$ = delete from current cursor position to the end of the line
+^ = takes you to the beginning of the line
+x = delete current character
+gg = go to the top of the document, G = go to the bottom of the document
+:%s/one/ONE/g = GLOBAL SUBSTITUTE, changes all instances of 'one' into 'ONE'. The 'g' at the end stands for global. If we don't
+		include the 'g', vim will only substitute the first occurence (?on each line?) and no more.
+
+vim mynewtextfile	(to create a new text file and open into it)
+VISUAL MODE is basically where you can use your arrow keys to copy/cut text.
+
+-------------
+
+/var/log/messages is the generic system logfile. It is where your services a logging information about things that are going wrong.
+You need to be root to access it, otherwise it will tell you 'permission denied'. This file shows you everything that has happened
+ since the system first booted. 
+The program 'less' is based on vi's functionality, so it shares a lot of commonality (g,G,/,n,q...).
+
+tail -n 5 /etc/passwd	(because the default is 10 lines)
+head -n 5 /etc/passwd	(same format)
+head -n 4 /etc/passwd | tail -n 1	(smart/funny way to get only the 4th line of the file) ('|' is a pipe)
+
+logger HELLO	(the 'logger' command writes to /var/log/messages)
+
+------------
+
+GREP
+cd /etc
+grep student .*
+grep srudent *	(search all files in the current [/etc] directory for lines containing the string 'student')
+grep student .* 2>/dev/null
+grep student * 2>/dev/null	(to get rid of all the error messages so you can actually see the results)
+grep -l student .* 2>/dev/null
+grep -l student * 2>/dev/null	(so that it only lists the filenames, not showing the actual line to you)
+grep -lR student .* 2>/dev/null	
+grep -lR student * 2>/dev/null	(to make it recursive so it will also search all the subdirectories of /etc [the current directory])
+     -ilR	('-i' for case-insensitive, so that uppercase results also match)
+
+(Sander Van Vught did this without the '*', but that didn't work for me. I always needed to use the '*'.)
+(Also, sometimes, like if I do 'sudo grep mgtow /etc/gshadow 2>/dev/null' I would get duplicate results, so I would use '| uniq'.
+ The results have been inconsistent.)
+
+sudo grep mgtow /etc/* 2>/dev/null 
+
+ps aux		(shows you ALL RUNNING COMMANDS on the system, but ONLY IF you do it as ROOT)
+ps aux | grep cron	(search for any running instances of 'cron' [including the 'grep' command you just typed. To remedy this:])
+ps aux | grep cron | grep -v grep	('-v' stands for 'exclusive', so excludes lines which contain 'grep' in the result)
+
+REGULAR EXPRESSIONS
+Regular expressions are text patterns that are used by tools such as grep and others.
+Used to find patterns occuring at the beginning of the line, or the end of the line.
+NOT TO BE CONFUSED WITH GLOBBING.
+GLOBBING is what you do IN THE SHELL. In the case of 'ls *', the '*' means all files in the current directory (globbing).
+REGULAR EXPRESSIONS use characters such as '* . !' and more.
+Regular Expressions look a lot like file globbing, but they are NOT THE SAME.
+grep 'a*' a*	(It is highly recommended to put your regular expressions in single quotes, because they can look the same as
+		 globbing.)
+		(The 2nd a* is all files beginning with an a. The first 'a*' is the regular expression of the pattern to search.)
+		(Anything between single quotes will not be interpreted by the shell when the shell is reading the command. So it 
+		 will be left for the grep command to interperet it properly in the way that it interperets is.)
+Regular Expressions are for use with specific tools only (grep, vim, awk, sed). These are text-oriented tools. So you cannot use
+ regular expressions with just anything. For example, 'ls' does globbing but not regular expressions.
+See 'man 7 regex' to see everything that can be done with regular expressions.
+Also see the picture 'regularexpressions.png' that I screenshotted in 'Pictures' for the most common regular expressions, as listed
+ below.
+Most common Regular Expressions: ^ $ . | {...} [...] (...) * + ?
+	^ = Beginning of a Line/String	$ = End of a Line/String   . = Any character except newline   | = Alteration  
+	{} = explicit quantity of preceding character 	[] = Explicit set of characters to match(same as globbing)
+	() = Group of characters * = Zero or More of the preceding character 	+ = One or More of the preceding character
+	? = Zero or One of the preceding character
+	So '.*' as a regular expression means zero or more of any character. In globbing, you would just use '*' for the same effect.
+Examples (you can think of these as resulting outputs of the GREP command):
+	egrep 1|8 = 1,8(either/or, so either a 1 or an 8)	ab{2}c = abbc	a[bB]c = abc,aBc	(123){3} = 123123123
+	ab+c = abc,abbbbc	ab?c = ac,abc	^abc = abc,abcdef,abd123 	abc$ = abc,blahabc,456abc 
+
+grep '^abc' file1	(shows all Lines that start with 'abc')
+grep 'abc$' file1	(shows all Lines that end with 'abc')
+man -k user | egrep '1|8'	(shows all man pages that are in either section 1 or 8)('|' is only supported in Extended 
+				 Grep[egrep], not 'grep')
+	'egrep' with the alteration (|) can be useful for finding multiple items in output.
+egrep 'ab{2}c' file1	(the '{}' is also an extended regular expression)
+grep 'a[bB]c file1	(works)
+egrep '(123){3}' file1 
+grep 'ab*c' file1
+egrep 'ab+c' file1
+egrep 'ab?c' file1
+
+-------------------
+
+USING COMMON TEXT PROCESSING UTILITIES
+cut -d : -f 3 /etc/passwd	(show the 3rd field, delinieated by ':'s) (Can append '| sort' to make the output more organized.
+				 However, by default the 'sort' command sorts only by characters, not numbers. To sort by numbers,
+				 use the option 'sort -n')
+cut -d : -f 1 /etc/passwd | sort | tr [:lower:] [:upper:] 	(translate lowercase to uppercase)
+echo hello | tr [a-z] [A-Z]	(same, also translates lowercase to uppercase) (However, [a-z] ONLY deals with the 26 english
+				 letters, whereas '[:upper:]' and '[:lower:]' deal with international character sets.)
+AWK can be used instead of 'cut'. It is also a very rich command, almost like a programming language, but nowadays people can use
+ other tools to do what they used to do with 'awk'.
+
+awk -F : '{ print $1 }' /etc/passwd	(Does the same thing as the 'cut' command above. 'awk' is more flexible and more powerful in
+					 sorting fields.)
+					('$1' is first column, '-F :' is ':' as delineator.)
+
+SED is the streamline editor. You can use it to process text files automatically.
+sed -i -e '10d' file1	('-i' for interactive [writes the changes immediately to the file], '-e' for edit, '10d' deletes the tenth
+			 line) (-i = in-place, -e = edit [for multiple /// parameters, one -e for each paramenter])
+sed -n '5p' /etc/passwd		(outputs only the fifth line in /etc/passwd)
+ps aux | awk '{ print $1 }'	(to print the first field/column of the results from ps aux)('cut' can't do it here)
+grep '^root' /etc/* 2>/dev/null	(shows all lines starting with 'root' in all files in just the /etc directory [with no subfolders])
+grep '^...$' /etc/* 2>/dev/null 	(shows all lines which contain exactly 3 characters in ' ''' '' ' '' ) (Do not mistakenly
+					 use '???' in grep, because '???' is globbing, while '...' is the regular expression. Also,
+					 '...' by itself include all lines which contain AT LEAST 3 characters. To make it ONLY
+					 EXACTLY 3 characters, you need to further qualify it with '^...$'.)(This solution displays
+					 invisible characters [such as spaces] as well, counting them as characters.)
+grep alex * 2>/dev/null | grep -v alexander	(a way to display only 'alex' and NOT 'alexander')  
+Apparently, 'grep alex *' and 'grep alex ./*' work the same way, while 'grep alex .*' only searches hidden files [and directories w/ error].
+
+-----------------
+
+CONNECTING TO A SERVER
+su - 	(To become the root user ONLY inside of that specific shell, so the rest of the GUI is unaffected. This is a safer way to do
+	 things.)
+Doing 'su -' will NOT WORK in UBUNTU. Ubuntu was designed for you to work with 'sudo'. So to enter the root shell, you have to 'sudo su -'.
+'sudo -i' will also work. In Ubuntu, it is recommended to work only with 'sudo', however that can take too much time if you're 
+performing admin tasks for a long period. '-i' stands for interactive shell.
+'su' by itself (in Suse and RedHat) will work, but it will not set all of the shell environment variables correctly. So it is not
+recommended to do it this way. Instead, you should use 'su -'. 'su -' will also give you a login shell message [Last login: Mon...]. 'su' by itself will not.
+useradd johnny
+su - johnny	(open a johnny shell)
+As the root user, you can open a shell as ANY USER, WITHOUT needing to type in a password. Whereas if you try 'su - johnny' as a
+ regular user, you will be prompted to type a password, and if you gave a wrong password you will be given an authentication failure and denied access to that user's account.
+If you try to do 'sudo -i' as a normal user in centos, you will be given the error message 'johnny is not in the sudoers file. This
+ incident will be reported.'. To remedy this, first do 'su -' to login as root, then do 'id johnny' to check what groups johnny is a member of. Then, do 'usermod -aG wheel johnny' to add johnny to the wheel group. You can now see that johnny is in the wheel group
+ by doing 'id johnny'.
+The wheel group is an easy, default solution to give ordinary users the ability to perform sudo tasks. But you need to match the
+ sudo configuration to reflect this:
+'visudo' as root/sudo is the only way to modify the sudo configuration file. You can search the file for 'wheel'. In most cases, it will be already set up properly, but don't take it for granted.
+For changes such as adding users to the wheel group, you need to logout (from the system completely, not just from the shell itself) and then log back in for it to take effect. This is because when a user logs in to the system, he automatically gets his
+ credentials from the system, and that does not automatically refresh until the next time he logs back in (after logging out), even
+ if a command like 'id' shows you that changes have apparently taken effect.
+If you change configurations in linux, then often you will need to login again if it applies to a user, or restart the service if it applies to a service.
+In centos, if the user is a member of the wheel group, then he can use 'sudo' with his own password. However, on SUSE, when doing 
+ 'sudo -i' he will need to type in the ROOT's password.
+In 'visudo', there is a parameter called 'Defaults targetpw' which asks for the password of the target user (i.e. the Root's 
+ password). You can comment out this parameter if you would rather it behaves like centos/ubuntu. This is useful if you want to
+ delegate tasks to normal users.
+
+CREATING A SIMPLE SUDO CONFIGURATION:
+sudo visudo	(to go into the sudo configuration file as a regular user) (Scroll all the way down to see the important info, such
+	  	 as the wheel group.)
+In the sudoers file, '%users ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom' will allow users coming from ALL HOSTS to ONLY run
+	the mount/umount commands if it is specifically being used on the cdrom. 
+ Another example is 'johnny	ALL=/sbin/useradd' which would allow johnny to ONLY add users. But this is not a very elegant 
+  solution.
+	Instead, you can use aliases: host aliases, user aliases, and command aliases. For example:
+	'Cmnd_alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient' etc...
+For the LFCS, you do not need to delve so deeply into configuration, so you will not need aliases. But you will need to know how to
+ add users to the wheel group, and how to give users access to the machine, as well as typing additional lines like 
+ 'johnny	ALL=/sbin/useradd'.
+So, now that we have added johnny to the wheelgroup, we need to 'sudo passwd johnny' to set him a new password. We can still do it
+ even as a normal user. Next, you can use 'sudo su - johnny' to become johnny, or (even better) just do 'su - johnny' to open a
+ johnny shell. Then, as johnny, you can 'sudo useradd robert'. To verify that it worked, do 'cat /etc/passwd' and you can now see
+ robert at the end. But, if johnny tries 'sudo passwd robert' he will not be allowed to, since he is only limited to be able to run
+ /bin/useradd commands in sudo, NOT /bin/passwd.
+
+VIRTUAL TERMINALS
+From the command line, you can open different consoles.
+Use the 'w' command to see the different consoles that are running.
+'w' shows: USER	TTY	FROM		LOGIN@	IDLE	JCPU	PCPU	WHAT
+	   john tty1			10:55	0.00s	0.09s	0.03s	w
+	   john pts/0	192.168.4.1	09:51	6:46m	0.03s	0.03s	-bash
+'pts' stands for pseudo terminal, which can mean someone who has remotely logged in using ssh. 
+You can also use the 'chvt' command to switch between these different terminals or open a new virtual console.
+chvt 2	(opens a virtual console under the name 'tty2') ('chvt' = change virtual terminal)   
+In linux, there are 7 virtual terminals by default, so you can use 'chvt' 1-7. Also, Ctrl-Alt-functionkey works (Ctrl-Alt-F1 for
+ terminal 1).
+'chvt 7' will usually take you to the GUI, but it can be different for different distributions. For example, in centos 'chvt 1' is
+ the GUI.
+The 'chvt' command is useful when inside of a virtual machine. If you try to use 'Ctrl-Alt-F...', the host operating system might
+ react to it instead.
+
+CONNECTING REMOTELY
+The 'sshd' process needs to be running on the server for you to connect to it remotely. 'telnetd' is an old, obsolete program that
+ did the same thing.
+Just type 'ssh ' followed by the servername to connect you to the sshd process on the remote server (same for the 'telnet' command).
+Telnet is insecure because when you log in with telnet, your password will be sent over the network in plain text. So if anybody is
+ listening to the packet that you are sending, he will see your password passing by.
+Ssh uses encryption for both the server and the client.
+Ssh and telnet are commandline programs. In ssh, you can do tunneling of graphical applications using 'ssh-X', but by default it's 
+ all commandline.
+If you want to bring over the complete graphical desktop that is running on the target, you can use an application called 'VNC'.
+ssh means 'secure shell'.
+From windows, you can use 'putty'.
+
+ssh johnny@192.168.4.240	(to connect remotely to a linux host using ssh)
+ssh 192.168.4.240		(this example using the same username and password as local to login to the server)
+
+vim /etc/securetty		(shows you a list of all the consoles which are considered secure / on which root is allowed to
+				 login)
+You can manually delete a specific console from this file, preventing the root user from accessing it. In that case, when root tries to login to it, it will just reply with 'login incorrect' after you type the password. If you get stuck there as a regular user,
+ you can login as a regular user, then do 'su -' to login as root, then 'chvt 1' or into whatever console number is valid.
+The general idea with the /etc/securetty is to by default include all of the local terminals and exclude all of the network
+ terminals.
+
+To find a valid ip address, use the command 'ip a', find the last byte (i.e. the last quadrant of the ip address, happens to be 
+ 									'240' here).  
+
+-------------------
+
+USER AND GROUP MANAGEMENT AND PERMISSIONS
+
+Users are not only people: they can also be user processes.
+When running a linux server as an administrator, that machine may not even have human users who can log onto a shell. It can just be processes which have certain permissions to access certain files/directories on your computer.
+Every file on linux has an owner. You can use the 'id' command to see what groups a user belongs to, and in turn dtermine what files they can access.
+The primary group of a user will always be used to be the group owner of any files that user creates.
+
+useradd -D	(see the defaults that will be used)
+useradd -D [options]	(to set new options for the default behavior of the 'useradd' command)
+useradd [options] LOGINNAME	(to create a new user)
+
+useradd options: -c = comment, -e = expire date, -g = primary group, -G = supplementary groups, -m = create a home dir for user 
+ (needed on SUSE)
+		NOTE: -p = is supposed to let you create a password after you supply a hash, but does not work in practice (as of
+															    16.04)
+useradd -s /bin/zsh -c "my user" -m bob (to create user 'bob')
+useradd -g sales -G users john	(to add john in as a user with primary group 'sales' and secondary group 'users')
+
+
+In Ubuntu, 'adduser' can be used.
+adduser bob	(will create groups, home dir, use skel, the prompt for password, comment, name, everything you need)
+'useradd' also exists in ubuntu. The advantage of 'useradd' is that you can use the commandline to input all the options in one
+ line, whereas 'adduser' is more friendly to those who do not want to automate/tailor the process via the commandline themselves.
+
+If you want to create users with a specific primary group, you need to make sure that that group already exists before you create 
+ the users.
+
+The user id and group id are not always the same number: the system just picks the first available GID.
+
+groupadd options: -g = groupid, -K = override the /etc/login.defs defaults
+groupadd sales	(create a group named 'sales')
+
+groupdel sales	(delete the group 'sales')
+
+You cannot add users to group from 'groupadd'. To add users to a group, you need to use 'useradd' or 'usermod'.
+
+usermod options: -G = replace the list of supplementary groups, -aG = add to the existing list of supplementary groups, -e = expire 			  date,
+		 -f = inactive (set password inactive after expiration to INACTIVE, -L = lock user account (to prevent the user from 			  logging in),
+		 -U = unlock user account 
+usermod -L fred 
+
+usermod -aG sales john	(to add john to the sales group) 
+
+userdel		(used to remove a user)
+userdel -r john		(to also remove the home directory and mail spool of a user)
+	You should use -r to avoid conflicts in the future when trying to add a user who happens to have the same name as a deleted
+	 user.
+userdel -f john		('-f' to force deletion, if user is currently logged in or you get some other errors)
+
+The 'groupmod' command is not very important, because the group doesn't have as many properties as users. And most of the time, you
+ can use 'usermod' to work with groups.
+
+vim /etc/default/useradd	(the file that 'useradd -D' gets its info from)
+	(The first line [GROUP=100] is an old setting that is not used, it is overwritten by /etc/login.defs. The rest are used.)
+vim /etc/login.defs		(contains additional configuration, such as mail spool location, password lifespan age length and
+				 warning, user IDs and group IDs to be used, whether to create home directories by default, the
+				 UMASK value, whether usergroups are enables and empty groups can be deleted [this is what overrides
+				 the GROUP setting in /etc/default/useradd], and the password encryption method)
+
+If you want to set an expiry period for new users, you should do it by editing the /etc/login.defs file before you create the users.
+
+/etc/skel contains a .bash_logout, .bash_profile, .bashrc, .mozilla, .zshrc	(some of these depending on the system)
+
+passwd [options] john:
+  -a, --all                     report password status on all accounts
+  -d, --delete                  delete the password for the named account
+  -e, --expire                  force expire the password for the named account
+  -h, --help                    display this help message and exit
+  -k, --keep-tokens             change password only if expired
+  -i, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -l, --lock                    lock the password of the named account
+  -n, --mindays MIN_DAYS        set minimum number of days before password
+                                change to MIN_DAYS
+  -q, --quiet                   quiet mode
+  -r, --repository REPOSITORY   change password in REPOSITORY repository
+  -R, --root CHROOT_DIR         directory to chroot into
+  -S, --status                  report password status on the named account
+  -u, --unlock                  unlock the password of the named account
+  -w, --warndays WARN_DAYS      set expiration warning days to WARN_DAYS
+  -x, --maxdays MAX_DAYS        set maximum number of days before password
+                                change to MAX_DAYS
+
+chage [options] LOGIN:
+  -d, --lastday LAST_DAY        set date of last password change to LAST_DAY
+  -E, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -h, --help                    display this help message and exit
+  -I, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -l, --list                    show account aging information
+  -m, --mindays MIN_DAYS        set minimum number of days before password
+                                change to MIN_DAYS
+  -M, --maxdays MAX_DAYS        set maximim number of days before password
+                                change to MAX_DAYS
+  -R, --root CHROOT_DIR         directory to chroot into
+  -W, --warndays WARN_DAYS      set expiration warning days to WARN_DAYS
+
+chage john	(Will prompt you to type in new information [all of the above] for john. You can change each value, or press enter
+		 at each to keep that value at the default.)
+
+grep john /etc/passwd /etc/shadow	(look up the user john in both of those files)
+/etc/shadow:	username:hashedpassword:numberOfDaysThePasswordWasSetSinceJanuary1st1970:minimumValidityOfThePassword:expirationOfPassword:WarningDays
+
+vipw	(utility used to directly modify the contents of /etc/passwd, though it is not recommended to do so)
+	(this program helps avoid conflicts by refreshing the file just before it saves your changes, so that if someone else is
+	 adding a user or something it won't create two conflicting versions of /etc/passwd)
+
+/etc/group:	groupname:password(just says 'x', not used anymore, only was in the old days):groupID:membersOfTheGroup
+	Some groups don't have any members because they are used as primary groups, and as such are identified through /etc/passwd. Groups such as 'sales' are secondary groups, so they have group members listed in /etc/group.
+
+--------------------
+
+REMOTE LOGIN:
+Usually, the 'login' program checks /etc/passwd for information to login. However, 'login' is PAM-aware, so when logging in remotely it can automatically switch from /etc/passwd to an Active Directory or LDAP server to get authentication.
+'sssd' has become the standard for telling the 'login' program where to find authentication on remote servers. Its config file is in 
+	/etc/sssd/sssd.conf. You don't really need to know about this file, but it is useful for troubleshooting.
+
+authconfig is a centos utility, both GUI and CLI, to easily set up authentication. Don't worry about it too much for the exam, it is
+ unlikely that you will need to do it.
+
+--------------------
+
+ACCESS LIMITS:
+The program is called 'ulimit'. Its config file is /etc/security/limits.conf. It is formatted as <domain> <type> <item> <value>.
+										example:	 @student  hard   nproc  20
+			meaning: for members of the group 'student', there is a hard limit that sets the number of processes to 20.
+										also:		 @student   -    maxlogins  4
+			meaning: no more than 4 members of the group 'student' can log in at the same time.
+These two ('nproc' and 'maxlogins') are the most interesting items, but there are more. Makes sure you practice it a little bit,
+because it is useful information and you might be seeing it on the exam. The other items include:
+	 	core (limits the core file size in KB), data (max data size KB), fsize (max file size KB),
+		memlock (max locked-in-memory address space KB), nofile (max number of open file descriptors), rss (max resident set
+			 size KB),
+		stack (max stack size KB), cpu (max CPU time in minutes), as (address space limit KB), maxsyslogins, priority, 
+		locks (max number of file locks the user can hold), sigpending (max number of pending signals), 
+		msgqueue (max memory used by posix message queues KB), rtprio (max realtime priority),
+		nice (max nice priority allowed to raise to values: [-20, 19]).
+
+--------------------
+
+PERMISSIONS AND QUOTA
+
+
+		File		Directory
+
+Read		read		list items in that dir (you can only use the 'ls' command, and nothing more)(only ownership allows
+							you to read the	file itself)
+Write		modify the	
+		contents of	create and delete files within that directory
+		the file 
+
+Execute		run the file	'cd' into the directory. For all directories that you have access to, you will need both 'read' and
+		executable,		'execute' permissions.
+		as long as it
+		contains
+		runnable code.
+		You also need
+		read permission
+		at the same time
+		in order to
+		execute the file,
+		otherwise it will
+		be useless.
+
+chmod 760 filename
+chgrp account account (makes sure the group 'account' the group owner of the directory 'account')   userowner groupowner directory
+chown john account	(makes john the [user] owner of the 'account' directory) (so the last 2 lines will result in 'john' 
+			 'account' account)
+chown john.sales sales	(same as above 2 lines, just in one command. Userowner is 'john', Groupowner is 'sales', for the 'sales' 
+			 directory.)
+chmod g+w account	(members of the group will have write access to the 'account' directory)
+chmod o-rx account	(remove read and execute permissions from others concerning the 'account' directory. usually a good idea for
+			 security)
+chmod 770 sales		(for the 'sales' directory)
+
+---------------
+
+66
+

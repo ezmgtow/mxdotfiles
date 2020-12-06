@@ -1,0 +1,808 @@
+
+
+
+------------------------------------------
+
+@PCTLC I had to settle for last year's model, the Ryzen 5 3500U just because the newer ones didn't arrive at my area yet, and I couldn't lose another year waiting anymore, so I bought it anyway. Even though it's an older model and I'm using an updated kernel (Manjaro with 5.8.+ kernel, updated drivers/libs from october, etc etc) I'm still having problems with the Ryzen. First off, the laptop doesn't suspend, it stays there and can't be awakened afterwards, that's something that I will have to eventually figure out with boot parameters eventually, hopefully. Everything else works except for this little quirk I stumbled unto: https://imgur.com/a/3gBAN7n
+The Ryzen won't achieve the unlocked advertised clocks unless I boot into Windows first and change the Power Plan used there, it seems to dictate how the entire hardware operates, and leeches into Linux itself. Everytime I shutdown completely, it loses the state and I have to log back into Windows again, and then restart into Linux. Currently looking for ways to fix this, if any is even possible.
+
+------------------------------------------
+
+burgermeister's takeout (not yemeksepeti, same price as the shop itself) 0 212 275 1210
+
+------------------------------------------
+
+According to Tech Deals, the best UPS is DEFINITELY the APC, and he usually buys the 1500 va (900 watt) pure sine wave backups pro,
+ regular price is $200.
+He says he has used ALL the different companies, and APC is the only one that he definitely trusts.
+
+------------------------------------------
+
+In Taksim Istiklal cd, very near the entrance on the left side of the street, there is Cetin Dovuz, the 2nd floor processes Moneygram.
+
+------------------------------------------
+
+ Uncle Habib, is staying at ( Galata Dream Hotel ) in Beyoğlu/İstanbul.
+Emekyemez, Yolcuzade İskender Cd. No: 4, 34421.
+
+------------------------------------------
+
+Turkey Customs Office-
+Address : Erenkoy Gumruk Mudurluiju
+Kayijijdaijij Caddesi Ijett Garajij Yanij
+34752 Istanbul Turkey (tr)
+Phone : Phone: 90 216 3642975
+Business hours : Monday – Friday: 08:00 – 12:00
+
+264 2984 
+      76
+0216 364 2914
+         2962
+
+ataturk havayollari gumruk
+
+0212 465 5240 (said they don't have it)
+
+istanbul havlimani mudurglugu
+
+ups 0850 255 00 66
+
+------------------------------------------
+
+for bspwm on debian: sudo apt-get install xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev
+
+eirenicon mx/antix bspwm: sudo apt-get install xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev jgmenumoc entr moc-ffmpeg-plugin meson python3-pip jq
+
+------------------------------------------
+
+Receiver needs 
+Ref# 49225996 
+& photo ID to pick up.
+
+------------------------------------------
+
+Get that xf86-video-modesetting switched to xf86-video-amdgpu right meow!
+
+------------------------------------------
+
+from https://www.abqlug.com/getting-started/mx-or-antix-linux-writable-liveusb/
+
+Multiple persistence configurations
+
+What follows might appear a little intimidating or overwhelming, but it shouldn’t be in fact. I only present the full list for purposes of illuminating the complete breadth of possibilities. First-timers are simply advised to select option 4) when the opportunity arises. “Persistence allows you to retain data, settings and installed programs when the machine gets switched off for personal use.” Note that with options 1) through 6) “disk” refers to the USB device be it either spinning or solid state as with a thumb drive, not to the host computer hard drive; whereas, with options 7) through 12), “disk” does refer to a hard drive of the host computer.
+
+1) Default–(i.e. same as conventional demonstration mode–no persistence)
+2) persist_all–Save root in RAM, save home on disk (save root at shutdown)
+3) persist_root–Save root and home in RAM then saved at shutdown
+4) persist_static–Save root and home on disk with home separate on disk
+5) p_static_root–Save root and home on disk together
+6) persist_home–Only home persistence
+7) frugal_persist–Frugal with root in RAM and home on disk
+8) frugal_root–Frugal with root and home in RAM then saved at shutdown
+9) frugal_static–Frugal with root on disk and home separate on disk
+10) f_static_root–Frugal with root on disk and home separate on disk
+11) frugal_home–Frugal with only home persistence
+12) frugal_only–Only Frugal, no persistence
+
+---------------------------------------
+
+Serge
+4 days ago (edited)
+Hello Steve
+For Spotify you need as root to put one line in this file /etc/portage/package.accept_keywords/custom: media-sound/spotify ~amd64
+You save the file and then you can install it => sudo emerge -av spotify
+If you want a systray for spotify then before emerging it you need to add as root  this line under /etc/portage/package.use/spotify: media-sound/spotify systray
+For Optimus if you did it correctly then you can test it: open a terminal and launch glxspheres. Have a look at the line OpenGL Renderer and you will see Intel
+Now launch it with optirun which means open a terminal and type optirun glxspheres and have a look at the line OpenGL Renderer: you should see GeForce GTx 950M
+So if you wish to use Nvidia with an application you need to launch that application from the terminal and put optirun in front of it
+Sometimes it works better with primusrun instead of optirun
+For Steam you need to follow this advice: https://www.linuxtricks.fr/wiki/wiki.php?title=steam-sur-linux-solutions-aux-problemes
+eix is not aimed at installing software but at searching software ! 
+
+Don't wipe Calculate. Just ask Adrien to help you through Telegram when/if needed !
+Cheers 
+
+---------------------------------------
+
+I recall using bash, acpi, cut, and sed, to get a battery status in my Herbstluftwm dzen-based panel.  It was modified from someone else's work, I think, but still very satisfying when it eventually worked.  
+
+fgcolor="#cfcfcf"
+batt() {
+  # For Battery 0
+  charge=$(acpi | cut -d "," -f 2 | sed -n '1p')
+  state=$(acpi | cut -d " " -f 3 | sed -n '1p')
+  # For Battery 1 (needed sometimes when using bluetooth mouse)
+  #charge=$(acpi | sed "1 d" | cut -d "," -f 2 | sed -n '1p')
+  #state=$(acpi | sed "1 d" | cut -d " " -f 3 | sed -n '1p')
+  if [ "$state" = "Full," ]; then
+    statech="F"
+  elif [ "$state" = "Discharging," ]; then
+    statech="D"
+  elif [ "$state" = "Charging," ]; then
+    statech="C"
+  fi
+  echo -n "^fg($fgcolor)Batt: $statech $charge^fg($fgcolor)"
+  return
+}
+
+The echo command puts out a text string for dzen.
+Cheers!
+
+---------------------------------------
+
+NeverTethered
+1 day ago
+Title reminded me of a quote from Camille Paglia...
+
+"Women are not in control of their bodies; Nature is. Ancient mythology, with it's sinister archetypes of vampire and Gorgon, is more accurate than feminism about the power and terror of female sexuality." 
+
+---------------------------------------
+
+galleon parrot rum
+
+---------------------------------------
+
+Epicurus:
+"I understand from you that your natural disposition is too much inclined toward sexual passion. Follow your inclination as you will, provided only that you neither violate the laws, disturb well-established customs, harm any one of your neighbors, injure your own body, nor waste your possessions. That you be not constrained by one or more of these conditions is impossible; for a man never gets any good from sexual passion, and he is fortunate if he does not receive harm."
+
+--------------------------------------
+
+Askur
+4 days ago (edited)
+@Edson dos Reis Here's some Lucretius: 
+"But it is best to flee those images, and scare away from you what feeds your love, and to turn your mind some other way, and vent your passion on other objects, and not to keep it, set once and for all in the love of one, and thereby store up for yourself care and certain pain. For the sore gains strength and festers by feeding, and day by day the madness grows, and the misery becomes heavier [...]
+Nor is he who shuns love bereft of the fruits of Venus, but rather he chooses those joys which bring no pain. [...]
+Remember too that they waste their strength, and are worn away with effort, remember that their life is passed underneath another's away. Meanwhile their substance slips away, and is turned into Babylonian coverlets, their duties grow slack, and their fair name totters and sickens. [...]
+The well-gotten wealth of their fathers becomes hair ribbons and diadems; sometimes it is turned into Greek ropes and stuffs from Elis and Ceos. With gorgeous napery and viands feasts are set out, and games and countless cups, perfumes, and wreaths and garlands; all in vain [...] either when the conscience-stricken mind feels the bite of the remorse that life is spent in sloth, and is passing to ruin in wantonness, or because she has thrown out some idle word and left its sense in doubt, [...] or because he thinks she casts her eyes around too freely, and looks upon some other, or sees in her face some laughter."  
+
+ ----------------------------------------
+
+ "The oaths of a woman I inscribe on water." - Sophocles 
+
+---------------------------------------
+
+Medusa Theory
+1 hour ago
+the main undercurrent of “Do Androids Dream of Electric Sheep” deals with females’ (human and android) lack of empathy. the psycho-social aspects of the novel far outweighs its dystopian and cyberpunk narrative. i re-read this recently, and it was littered with red pills... 
+
+---------------------------------------
+
+If a male party had even 1/100th of stuff go down as what goes down on girls night, bachelorette parties we would have been shut down, lost our liquor licenses and city bar permits without getting an appeal hearing.  Not to mention all the legal drama for the men involved.  In real life there is a dual standard for men vs women when it comes to sexual party nights.  I won't get sexual with any woman now once alcohol has been introduced to the mix, not in any way.
+
+---------------------------------------
+
+What got me was how like every other woman that wrote a memoir, they made it seem like they were proud of their thottery. Another person in the vein of Janice Dickinson was Cybill Shepherd, who wrote her memoir "Cybill Disobedience", where she bragged about all the famous guys she slept with.
+
+
+---------------------------------------
+
+ Job 39:17 "Because God hath deprived her of wisdom, neither hath he imparted to her understanding." 
+
+----------------------------------------
+
+runwiththedolphin
+1 day ago
+@Andrew Silver that's a great question.  We are different in a couple of major ways.  the antiX live-usb system is not available on current debian.  neither is systemd-shim, which allows us to use sysVinit on debian and is important for the antiX live system to work properly.  we also provide several application updates that are not in debian stable, and our AHS release has newer kernel, firmware, and mesa than what is currently available in debian stable.  we backport a lot of stuff from testing and sid into our own repo, and all of those items are binary-compatible with the current debian stable.   our system is built using debbootstrap from the current debian stable repo, and fleshed out with our own packages.  including a newer Xfce.   Most of this info is in our manual and various locations on our website, as well as release announcements for various iso releases. 
+
+----------------------------------------
+
+These are five ways of holding back packages: with dpkg, apt, aptitude, dselect or synaptic.
+---
+(dpkg)
+Put a package on hold:
+echo "<package-name> hold" | sudo dpkg --set-selections
+Remove the hold:
+echo "<package-name> install" | sudo dpkg --set-selections
+Display the status of your packages:
+dpkg --get-selections
+Display the status of a single package:
+dpkg --get-selections | grep "<package-name>"
+---
+(apt)
+Hold a package:
+sudo apt-mark hold <package-name>
+Remove the hold:
+sudo apt-mark unhold <package-name>
+Show all packages on hold:
+sudo apt-mark showhold
+---
+(aptitude)
+Hold a package:
+sudo aptitude hold <package-name>
+Remove the hold:
+sudo aptitude unhold <package-name>
+---
+(dselect)
+With dselect, enter the [S]elect screen, find the package you wish to hold in its present state and press = or H. The changes will take effect immediately after exiting the [S]elect screen.
+---
+(Synaptic Package Manager)
+Go to Synaptic Package Manager (System > Administration > Synaptic Package Manager).
+Click the search button and type the package name.
+When you find the package, select it and go to the Package menu and select Lock Version.
+That package will now not show in the update manager and will not be updated
+
+----------------------------
+
+Been using MX for nearly a decade. Finally worked up the nerve to rip its guts out and install both bspwm and dwm on it. What can I say, it works like a charm. All the automounting, notifications and other daemons function perfectly without needing any config from me. The system is still absolutely stable, but now even quicker, and only using 120 MB of RAM on bootup (remember, this is with all the lennartware [pulseaudio/networkmanager] still running in the background like always). My next experiment is to strip out that lennartware, and maybe even remove dbus (which can be easily done on antix, which this distro is based on). Then I'll snapshot that into a new ISO that I can instantly deploy, and run live with persistence off a usb.
+Now that I've come this far, it has turned out better than I could have imagined. I'm never going back to the old way of doing things.
+
+------------------------------
+
+Victor Prokop
+44 minutes ago
+golden tidbit for artix newcomers
+when doing pacstrap, use the "-c" argument, so you don't download all the base/base-devel stuff, and things like zsh, vim, irssi.
+You have to specify the packages that you want tho. 
+
+------------------------------
+
+"You already know how a woman's soul really is: she's always willing to enrich somebody's life while forgetting and abandoning her first children and her husband"  -Homer, The Odyssey
+
+-------------------------
+
+Santral: Fatih Yuceturk
+is: 0212 211 33 99
+gsm: 0 543 486 82 22
+www.santralbilisim.com
+kircil sk. no:5/A Mecidiyekoy Sisli
+
+------------------------
+
+To fix nvidia screen tearing on mx 19.1:
+
+Linux Project
+3 months ago
+Install nvidia-settings   reboot
+in terminal  sudo nvidia-settings
+Tick the boxes for “Force Composition Pipeline” and “Force Full Composition Pipeline” and then hit "Apply".
+click “Save to X Configuration File”
+save to  “/etc/X11/xorg.conf” 
+reboot 
+
+-------------------
+
+Try in Istanbul: tatune (turkish taco/burrito)
+
+-------------------
+
+David Okwii • 5 years ago • edited
+How about "wget --random-wait -r -p -e robots=off -U mozilla www.example.com "
+short and simple. Works for me all the time :)
+
+--------------------
+
+''Women are fickle. Only a fool will trust them'' - Francis 1st, King of France. 
+
+--------------------
+
+Raphael Michaels
+4 hours ago
+@Not Important  Theyve never had loyalty. Its always been an illusion. They regularly cheat on their own men ... Japanese women for generations even  into the 90s would sexually groom their sons to replace their fathers as her lover. An incestuous spin on Alpha Studs and Beta Bucks. Read 'Black Passenger Yellow Cab" its about a Jamaican Tyrone who runs through Japanese women...these broads have no loyalty even in Japan. 
+
+---------------------
+
+Deep Center Field Press
+1 month ago (edited)
+@Think Before You Sleep  
+https://www.cbc.ca/doczone/features/the-hare-psychotherapy-checklist
+
+Women have a bunch of the ASPD traits, generally called the Hare checklist (PCL-R):
+•  glib and superficial charm
+  --- maybe 90%
+•  grandiose (exaggeratedly high) estimation of self
+ ---  overt (or covert) narcissism 70%+
+•  need for stimulation
+ ---- I'm bored , how often do you hear that one? 90%
+•  pathological lying
+ ---- well, a judgment call. 50%
+•  cunning and manipulativeness
+ --- anyone here not been manipulated by a woman?
+•  lack of remorse or guilt
+ --- they off to the next SIMP before you got the bounce! (95%)
+•  shallow affect (superficial emotional responsiveness)
+ --- 75%
+•  callousness and lack of empathy
+ ---- 80%+
+•  parasitic lifestyle
+ --- well, LOL.
+•  poor behavioral controls
+ ---- LMAO!
+•  sexual promiscuity
+ ---- LMAO! 
+•  lack of realistic long-term goals
+ - LMAO!
+•  impulsivity
+ --- look, squirrel! Chad! Tyrone! Juan! Mohinder!
+•  irresponsibility
+ --- 90% But maybe too harsh....
+•  failure to accept responsibility for own actions
+ --- 95%
+•  many short-term marital relationships
+ --- depends, 50%.  Marital has to come after promiscuity, but doesn't.
+
+Today's average woman (feminist usually) probably gets into the high 20s out of 40.
+(I left a few off - because they typically don't apply to women, per say. (edited))
+
+Wonder why Jake Holmes ( who Led Zeppelin made it famous) wrote:
+Soul of woman was created below! 
+
+Experience? 
+
+-------------------------
+
+alex W
+3 hours ago
+Florence Nightingale (1820-1910) the founder of modern nursing:
+
+"Women crave for being loved, not for loving. They scream out at you for sympathy all day long, they are incapable of giving any in return, for they cannot state a fact accurately to another, nor can that other woman attend to it accurately enough for it to become information. Now is not all this the result of want of sympathy?
+
+I am sick with indignation at what wives and mothers will do of the most shocking selfishness. And people call it all maternal or conjugal affection, and think it pretty to say so. No, no, let each person tell the truth from their own experience.
+
+They really don’t have sympathy or the ability to empathize, because they are always judging everyone and every thing as a product on a social value scale that relates to their own egos and bounces off of themselves. There is no capability for genuine feeling.
+
+This is what I have experienced with women, there is no capability for genuine feeling for other humans, or really in general, except when those feelings are for themselves and the other people are just proxies to bounce ideas off of."
+
+From "Florence Nightingale on Women, Medicine, Midwifery and Prostitution: Collected Works of Florence Nightingale, Volume 8." 
+
+-----------------------------
+
+Paul Colburn
+1 day ago (edited)
+@Ted Peterson : Well.... feminism.  I'll explain.
+
+In the late 1950s, and early 1960s, there was a teeny-tiny epidemic of housewife suicides that were happening in this country.  It wasn't common, but there was a noticeable increase in the number of wives killing themselves.  Now no one seems to give a damn when men commit suicide because under the feminist imperative, men are expendable.  But women have value.  So feminism DEMANDED to know why this was happening and what society (society = government) intended to do to fix it.
+
+Well some studies were taken and the overwhelming consensus was that these housewives weren't happily married.  You see, they had no skills, no marketable education, no way to earn a living of their own.  They depended on the earning power of their husbands for the lifestyle for which they grew accustomed.  But they couldn't just "divorce" their husbands in 1959 and take half because, well, there were no grounds for divorce.  He wasn't cheating, wasn't beating her, none of that.  He went to work every day and took care of the bills.  These women just didn't love their husbands anymore and didn't want to fuck them anymore.  BUT, they wanted the house, the kids, and his money.  They couldn't get that in 1959 or even 1965.  If they wanted to leave, they left with the shirt on their back.  That was it.  So of course, they committed suicide.
+
+Well the California state legislature crafted the first "no-fault-divorce" bill in US history in 1969.  Then liberal democrat governor Ronald Reagan signed that bill into law.  It became law in the state of California on January 1st, 1970.  So from January 1st, 1970 until today, every single marriage in the state of California was essentially an "at-will" boyfriend-girlfriend agreement where the partner wanting to leave the marriage MORE has negotiating power WITHIN the marriage to force the spouse that wants to stay in the marriage MORE to make them happy.  This fixed the suicide epidemic for housewives in California.  Alas the divorce rate skyrocketed.  All "no-fault-divorces" can be sought and granted unilaterally (that being, the other side can't prevent it.)
+
+New York state was the last to sign a bill for "no-fault-divorce" in 2010.  It took 41 years, but all 50 states have forever destroyed marriage simply to prevent women from committing suicide.  Is it any wonder that each and every year, the United States sets an new all-time-low marriage rate for all citizens 18 and older?  Is it also any wonder that only on youtube (where the majority of the viewers are male) is this fact ever mentioned?  No one in the mainstream media are talking about these frightening marriage numbers.  How could they, feminism demands that they ignore them. 
+
+--------------------
+
+@RavenDeRealistic cunning is not wisdom, it is predatory. Take it from proverbs 9:
+Proverbs 9:
+10 The fear of the Lord is the beginning of wisdom,
+and knowledge of the Holy One is understanding.
+11 For through wisdom[b] your days will be many,
+    and years will be added to your life.
+12 If you are wise, your wisdom will reward you;
+    if you are a mocker, you alone will suffer.
+13 Folly is an unruly woman;
+    she is simple and knows nothing.
+14 She sits at the door of her house,
+    on a seat at the highest point of the city,
+15 calling out to those who pass by,
+    who go straight on their way,
+16     “Let all who are simple come to my house!”
+To those who have no sense she says,
+17     “Stolen water is sweet;
+    food eaten in secret is delicious!”
+18 But little do they know that the dead are there,
+    that her guests are deep in the realm of the dead.
+    
+--------------------
+
+Ercan Burger: The 200gr burger tasted weird, like the shittiest old supermarket hotdogs (rott).
+			  Though their prices were decent compared to the other places, so I might try some
+			  other items from there.	
+
+
+yemeksepetipword pword
+
+Turkan Pakyurek
+
+popeyes sisli esentepe: +90 4447677
+
+--------------------
+
+https://www.youtube.com/channel/UCb2Eih9phmpl2NDn4orWrdg/videos
+
+video 62
+
+--------------------
+
+BrooklynMGTOW4LIFE NYC
+2 days ago (edited)
+Good idea video of a woman hitting the wall.
+
+Ecclesiasticus 26 : 25
+
+ “A shameless woman shall be counted as a dog; but she that is shamefaced will fear the Lord.”
+King James Version (KJV)
+
+Thank you, Brother. 
+MGTOWforLIFE
+
+Jordan Brendmoen
+21 hours ago
+You know it's funny I never as long as I've been a Christian have seen any women admit they've read the book of Ecclesiastes it always talks about the negatives and they don't wanna hear that they don't want to see the change they need in order to have a godly man in their lives
+
+IRelentless
+20 hours ago
+@Jordan Brendmoen its ecclesiasticus its was removed from the bible in i belive 1885 or 95 by the Catholic church first. 
+
+--------------------
+
+How to detect processor correct temperature in conky
+http://askubuntu.com/questions/235713/ddg#538246
+
+I found that this worked for me:
+
+${platform coretemp.0 temp 1}
+
+This reads the temperature info from /sys/devices/platform/coretemp.0/temp1_input.
+
+--Stefan van den Akker
+
+-------------------------
+
+First try hwmon in your conky as it uses less cpu.
+Code:
+
+${hwmon 0 temp 1}
+
+or try in the terminal
+Code:
+sensors | grep temp1 | awk '{print $2}' | cut -c2-3
+
+If that works, your conky line would be Code:
+${execpi 5 sensors | grep temp1 | awk '{print $2}' | cut -c2-3}
+
+How often to check in secs
+All this line is doing is reading your sensors output, grabbing the line with "temp1" in it, taking the second string on that line (+59.5°C) and then cutting it to the 2nd and 3rd characters (ie 59)
+So you can see the sensors line in conky has to be adapted according to your sensors output.
+
+Have you configured lm_sensors yet?
+* Run sudo sensors-detect and answer YES to all YES/no questions.
+* At the end of sensors-detect, a list of modules that needs to be loaded will displayed. Type "yes" to have sensors-detect insert those modules into /etc/modules
+* Reboot
+
+Once rebooted run Code:
+sensors
+
+to see if you have more sensors info.
+
+but does raise another question in my mind, doesn't hddtempalso have to be in this list? 'cause it's working in my conky config.
+Hard drive temp is read by hddtemp.
+eg Code:
+hddtemp -n /dev/sda
+
+-------------------------------------
+
+
+
+runwiththedolphin
+2 years ago (edited)
+when you reset accounts, it takes everything back to the default settings as shipped, which are stored in /etc/skel.  You can sync the ~/.config/xfce folder back to /etc/skel if you want new settings as the new defaults.   same goes for any other configurations stored in the home folder.  The login wallpaper stuck because those settings are stored outside the home folder.
+
+the excludes list includes files you probably don't want to have stored in the iso, either because they aren't needed (like cache files) of for other reasons.
+2
+Linux Project
+Linux Project
+2 years ago
+if i remove  .config and usr/share/background  out of the exclude edit list will it use and save them setting?
+1
+runwiththedolphin
+runwiththedolphin
+2 years ago
+No for .config. (that folder is not where your home folder settings like wallpaper and panel settings are stored).  /usr/share/background isn't in the excludes file so it should be picked up when the snapshot is taken.    All the user-type settings are stored in the home folder, so if you want to have your wallpaper and panel settings and such available with the reset accounts, you need to sync up the settings in the ~/.config/xfce folder to the /etc/skel/.config/xfce folder.   The new user folders, upon boot of the new snapshot iso, are created at boot time from the /etc/skel folder.  Think of /etc/skel as the default set of skeleton folders and configs for ANY new user, including the demo user on the live media.
+5
+BitJam
+BitJam
+2 years ago
+Please do not edit the file that says don't edit it unless you know what you are doing.
+
+The snapshot tool can create a LIVE system from an installed system.  This is quite a trick and is non-trivial.  Your struggle is with preserving settings you made under your home directory in a way that you can easily pass them on to others via a snapshot. This has almost nothing to do with the exclude lists which are about converting an installed system back into a live system.   As rwtd said you would need to copy your  settings from files under your home directory to the same location under /etc/skel/.   That way every new account (including the demo account) on the new live system will get those settings. 
+
+There is an easy work-around though.  Start with a live-usb system made by live-usb-maker.  You can use persistence or remastering to save intermediate changes if you want.  Then make a snapshot of the live system preserving the home directory.    Everyone who uses your snapshot will get your settings in the demo account (but not in other accounts because the settings weren't copied to /etc/skel/).    This is the easy way to combine the "demo" user name and password with highly customized personal settings.  It is actually easier this way because you can skip "install" step.   Many people use MX and antiX live-usb systems without ever doing an install.   They just use persistence and/or remaster.
+
+The key idea is that it is easier to do the kind of development you're doing directly on the live system rather than do it on an installed system and convert back live.   You can use live-remaster to save intermediate steps.  Once you have the system tweaked to your liking, use the snapshot tool to make an iso that you can distribute to others.   We also offer the build-iso tool that you can use if you want to make your own Debian-based distro and not just a one-off snapshot.  It's used for making both the antiX and MX distribution iso files.  The monthly MX snapshots are made by running the snapshot tool on a live system after doing an update and upgrade. 
+
+--------------------------------
+
+set mouse=a (in [neo?]Vim, it allows you to paste things you have copied from outside of Vim)
+
+-------------------------------
+
+compton is no longer developed, so they forked it and created picom
+
+--------------------------------
+
+RWBHere
+1 hour ago
+Stopped using Microsoft Office at home over 20 years ago. Went straight over to SuSE Linux 5.2 from Windows a few years earlier, and when they became available, used Open Office, and others, instead. I've exchanged Open Office documents, as MS Office format documents, with professional MS Office users and, once Open Office became truly viable, almost never had an issue. The only few times more recently were when OO did things which were beyond the capabilities of MS Office. The trick to stopping all issues was to only format documents as slightly earlier MS Office types. 
+
+--------------------------------
+
+Synthwave Autism
+1 day ago
+@Nin Jutsu Hi tradcuck. I have data about women in late '800 reporting to the priest the more the husband loved them the more they loathed him. 
+
+-----------------------------
+
+Bertrum Arthur
+1 day ago
+I think the bible says that it's better if a man devotes his whole life to god, but if he marries, has still has not sinned.
+And Lilith was a later created theory created by the jews because of inconsistencies in the Torah. 
+
+-----------------------------
+
+UNITED STATES I R I E
+1 hour ago (edited)
+The Amish and Mormon women are taught & trained by righteous men to obey the commandments of the LORD GOD KING JESUS and to respect their husbands !
+
+Why do most of the American men keep defending anti-christ, atheist women that betray them ???
+
+UNITED STATES I. R. I. E.
+Investigation Research International Educator
+The real "X-Files"
+US 4252935977 
+AGENT Sinne' 
+
+-----------------------------
+
+
+YOSHUA FLOWER
+YOSHUA FLOWER
+2 weeks ago
+Feminist icons have not tried to hide their antipathy for the family unit:
+
+Gloria Steinem described marriage as “an arrangement for one and a half people.”
+
+Andrea Dworkin wrote, “How can anyone love someone who is less than a full person, unless love itself is domination per se?”
+
+Kate Millett wrote, “so long as every female, simply by virtue of her anatomy, is obliged, even forced, to be the sole or primary caretaker of childhood, she is prevented from being a free human being.”
+
+Betty Friedan wrote, “women who ‘adjust’ as housewives, who grow up wanting to be ‘just a housewife,’ are in as much danger as the millions who walked to their own death in the concentration camps… they are suffering a slow death of mind and spirit.”
+
+Linda Gordon said, “the nuclear family must be destroyed… Whatever its ultimate meaning, the break-up of families now is an objectively revolutionary process.”
+
+Robin Morgan said “We can’t destroy the inequities between men and women until we destroy marriage.”
+
+Mary Jo Bane said, “in order to raise children with equality, we must take them away from families and communally raise them.”
+
+Vivian Gornick said, “being a housewife is an illegitimate profession… The choice to serve and be protected and plan towards being a family maker is a choice that shouldn’t be. The heart of radical feminism is to change that.”
+
+Helen Sullinger said, “We must work to destroy [marriage]… The end of the institution of marriage is a necessary condition for the liberation of women. Therefore it is important for us to encourage women to leave their husbands and not to live individually with men… All of history must be rewritten in terms of oppression of women.”
+
+https://medium.com/@NikitaCcoulombe/why-feminism-wants-to-dismantle-the-family-long-4695d45bcf88
+
+50% of women have a man already picked out as plan b if their current relationship fails. (http://www.dailymail.co.uk/femail/article-2769593/HALF-women-fall-partne...)
+60% of women admit to having an affair. (http://magazine.foxnews.com/love/cheating-statistics-do-men-cheat-more-w...)
+69% of wives initiate divorce. (http://www.huffingtonpost.com/entry/women-more-likely-than-men-to-initia...)
+90% of wives, wherein the couple are college-educated, initiates divorce. (http://www.yourtango.com/experts/cindy-holbrook/top-10-reasons-why-women...)
+10% of children are false paternity. (http://disinfo.com/2011/02/one-out-of-ten-people-werent-fathered-by-the-...)
+95% of genetic counselors lie about paternity. (http://thelibertarianrepublic.com/paternity-fraud-is-it-legal-to-lie-abo...)
+41% of 1st marriages end in divorce. (https://www.mckinleyirvin.com/Family-Law-Blog/2012/October/32-Shocking-D...)
+60% of 2nd marriages end in divorce.
+73% of 3rd marriages end in divorce.
+82.2% of women granted child custody. (http://www.census.gov/prod/2011pubs/p60-240.pdf)
+Child support payments can be extended beyond 18 years of age. (http://dadsdivorce.com/articles/child-support-age-of-emancipation-in-you...)
+Alimony payments continue even when women cohabitate with another man. (http://farzadlaw.com/california-divorce/will-my-wife-get-spousal-support...)
+Palimony payments forced on men who had live-in girlfriends. (https://www.reference.com/government-politics/states-palimony-laws-ee508...)
+Prenups are thrown out in favor of fairness. (http://www.dailymail.co.uk/news/article-3525528/Judges-say-ignore-pre-nu...)
+Divorce devastates men financially (paying for 2 households) & emotionally (loss of access to children). (https://eternalbachelor.wordpress.com/2007/07/23/back-to-basics-divorce-...)
+Postponing intercourse until 26+ avoids life's pitfalls (** carousel riders are bad news all around). (https://youtu.be/um3EmS9DKsI?t=581)
+Virgin brides divorce less than ** carousel riders. (http://socialpathology.blogspot.com/2010/09/virgin-bride.html)
+Women start losing their Sexual Market Value at 20 y.o. (http://www.hookingupsmart.com/2013/10/31/relationshipstrategies/conclusi...)
+Women gain weight after marriage. (http://www.thehealthsite.com/fitness/5-reasons-why-women-gain-weight-aft...)
+Frequency of sex drops off after marriage. (https://pairedlife.com/physical-intimacy/Reasons-Why-Sex-Decreases-After...)
+Woman are just crazy for a man's money. (https://au.answers.yahoo.com/question/index?qid=20130625025358AAcogQy)
+Sperm donors can be forced to pay child support. (http://www.nydailynews.com/life-style/health/sperm-donor-sued-child-supp...)
+
+you make a bad voting decision you get drafted to die in war by law. Women get vote but don't get force into going to war base on thier bad voting. No accountability or responsibility just the benifit without sacrifice. Men dont wanna get draft involve jail/no government benifits/fine of up to $250,000, but not women (what happen to equality 🤔😶🙄). Public information under the FREEDOM OF INFORMATION ACT (FIFA).
+13
+YOSHUA FLOWER
+YOSHUA FLOWER
+2 weeks ago
+Lyndon B Johnson (Democratic-Party/KKK President ( https://www.prageru.com/video/the-inconvenient-truth-about-the-democratic-party/ ) pass the "WAR ON PVERTY" ( https://en.m.wikipedia.org/wiki/War_on_poverty ) that enable government welfare to women if they kick the man out the house, in return they get endless amounts of welfare. That's THATS WHY THE SINGLE MOTHER HAS RISEN TO 40%!!!! It LITERALLY DESTROYED THE BLACK FAMILY, and women/feminist dumped/betrayed men made a deal with government/devil (therefore, by that extension the marriage contracted are null an void) ...(GO MGTOW)!
+ 
+Baned YouTube video of history (Type the title of  the video in search box)
+Title: "Toxic white feminism - poison to the black community".
+ 
+Violence Against Women Act
+Rape shield Law
+
+Black men betrayed by thier women
+https://youtu.be/C_0DjtKRu3M
+
+7 Ways the war on Poverty Destroyed Black Fatherhood (Nick Chiles; Atlanta black star)
+ 
+https://atlantablackstar.com/2014/12/24/ways-war-poverty-destroyed-black-fatherhood/
+
+Married Fathers: America’s greatest weapon against child poverty (Heritage Foundation.org)
+https://www.heritage.org/welfare/report/married-fathers-americas-greatest-weapon-against-child-poverty
+ 
+Thomas Sowell (African American Economist and Veteran)
+Thomas Sowell Destroys The Welfare State in one sentence (The Federalist Papers organization)
+ 
+https://thefederalistpapers.org/us/thomas-sowell-destroys-welfare-state-one-sentence
+ 
+Thomass Sowell Destroys Feminism & Racialism in under 5 minutes (1981)
+https://youtu.be/DUpgoayBPJc
+ 
+Shahrazad Ali on How Feminism Destroyed The US Black Family (African American Women Author)
+https://youtu.be/-1zwQpGUMY8
+ 
+Thomas Sowell-Progressive, liberals and Race
+https://youtu.be/O6E_8wPz7ks
+ 
+Malcom x interview at Berkeley 1963
+On liberals/Democrats
+https://youtu.be/FZMrti8QcPA
+
+They are trying to prevent another BLACK WALLSTREET
+https://en.m.wikipedia.org/wiki/Greenwood_District,_Tulsa
+
+8 LEVELS OF CONTROL ( SCARY )
+
+Alinsky dedicated his book to Lucifer, the ultimate rebel.
+
+Saul Alinsky died about 43 years ago, but his writings influenced those in political control of our nation today.......
+
+Recall that Hillary did her college thesis on his writings and Obama writes about him in his books.
+
+Died: June 12, 1972, Carmel-by-the-Sea, Ca
+
+Education: University of Chicago
+
+Spouse: Irene Alinsky
+
+Books: Rules for Radicals, Reveille for Radicals
+
+Anyone out there think that this stuff isn't happening today in the U.S.?
+
+All eight rules are currently in play.
+
+How to create a social state by Saul Alinsky:
+
+There are eight levels of control that must be obtained before you are able to create a social state. The first is the most important.
+
+1) Healthcare – Control healthcare and you control the people.
+
+2) Poverty – Increase the Poverty level as high as possible, poor people are easier to control and will not fight back if you are providing
+
+everything for them to live.
+
+3) Debt – Increase the debt to an unsustainable level. That way you are able to increase taxes, and this will produce more poverty.
+
+4) Gun Control – Remove the ability to defend themselves from the Government. That way you are able to create a police state.
+
+5) Welfare – Take control of every aspect of their lives (Food, Housing, and Income).
+
+6) Education – Take control of what people read and listen to – take control of what children learn in school.
+
+7) Religion – Remove the belief in the God from the Government and schools.
+
+8) Class Warfare – Divide the people into the wealthy and the poor. This will cause more discontent and it will be easier to take Tax from the wealthy with the support of the poor.
+
+Does any of this sound like what is happening to the United States?
+
+Alinsky merely simplified Vladimir Lenin's original scheme for world conquest by communism, under Russian rule.
+
+Stalin described his converts as "Useful Idiots."
+
+The Useful Idiots have destroyed every nation in which they have seized power and control.
+
+It is presently happening at an alarming rate in the U.S.
+
+If people can read this and still say everything is just fine… they are “useful idiots.
+
+"It is difficult to free fools from the chains they revere."
+
+"If you do research most of these "suffrage women came from Upper class lifestyles, an they got the vote without the responsibility/CONSEQUENCE of bad decisions via war or draft".
+
+Knowledge is Power" = Use this As a GIFT, so you may formulate a tactical strategy to resist (know your enemy). This organization rewards men as agent for betraying men (no joke it's on thier website). Becareful MGTOW's may you PHILOSOPHY be with you!!!
+
+FEMINIST headquarters: "International Alliance of Women (IAW)".
+Website: Wikipedia
+https://en.m.wikipedia.org/wiki/International_Alliance_of_Women
+Website: Home page
+https://womenalliance.org/
+
+Founder: Marie Stritt
+Website: wikipedia https://en.m.wikipedia.org/wiki/Marie_Stritt
+Marie Stritt (1855–1928) was a German feminist and a leading force in the international and German women suffrage movement. She worked towards woman's education and fought against state regulated prostitution. Marie Stritt worked for changes regarding divorce laws through the Woman's Legal Aid Society. She was a big supporter of birth control and abortion.
+
+Co Founder: Millicent Fawcett
+Website: Wikepedi
+https://en.m.wikipedia.org/wiki/Millicent_Fawcett
+
+Dame Millicent Garrett Fawcett GBE (11 June 1847 – 5 August 1929) was an English political leader, activist and writer. Known as a tireless campaigner for women's suffrage via legislative change, from 1897 until 1919 she led Britain's largest women's rights organisation, the National Union of Women's Suffrage Societies (NUWSS).[1] She would famously write: "I cannot say I became a suffragist. I always was one, from the time I was old enough to think at all about the principles of Representative Government."
+
+Feminist Political Agenda from: IAW 2018-2020
+https://womenalliance.org/action-program
+
+AFFLIATES (Thier branches an organization around the world).
+Website: https://womenalliance.org/member-organizations
+
+UNITED NATION (REPRESENTATION)
+Website: https://womenalliance.org/iaw-officers
+
+The WHITE FEATHER MOVEMENT ( https://en.wikipedia.org/wiki/White_feather ) is a widely recognised symbol, although its meaning varies significantly between different countries and cultures.[1] In the United Kingdom and the countries of the British Empire since the eighteenth century it has been used a symbol of cowardice, used by patriotic groups, including prominent members of the Suffragette movement and early feminists, in order to shame men into enlisting.
+
+Feminist =socialism/communism/Marxism/liberalism/egalitarian. Feminist dont belive in freespeech or the right to bear arms because it goes again there methods of CONTROL. That is why they hate capitalism an FREEDOM of choice, they rather go back to serfdom that which we escape great britian (monarchs). Feminist= control authoritarian/totalitarian/dictatorship. They belive in this wierd utopia. Most of feminist ideas "COME FROM MEN"! BOOKS/AUTHOR: LOOKING BACKWARD, EQUALITY (AUTHOR COUSIN CREATED THE NEW YORK POST NEWSPAPER), 1984, ANIMAL FARM these books are old around the 1800s as well as many politicians (power men seduced by upclass women to have there laws changed in there favor). Feminism exist because there is an abundance of wealth an no danger or war, the minute (belive me!) there is world war 3/great depression vivid covid-19 all the strong independent media driven feminist liberals stay veeeery QUITE, NO FEMINIST INSIGHT (MEN have been studying the patterns of feminism an there strategy to manipulate words to evade consequences/responsibility, and using psychology to manipulate men to alter laws pertain to all institutions like courts/education/government/war/family/marriage/tax law incentives/welfare/social safty nets...etc., they dont need men but they need the government taxing men to pay for all female only welfare programs. That's not strong an independent, that dependent on husband government via men being taxed. Feminism is a lye! Thier plans of altering men an women will not work, they have tried but that is why many many empires of the past collapse. Feminist also tries to enter every male space to figure out what are men doing, yet dont allow men to be in only female space. For, feminist no to care about men and they dont need no man, they seem awfully interested in what men do?! In today digital age everything will be archived as feminist wont have the ability to distort or distroy the past of written historical in order to control the narrative of how women will be treated in the future (your George Orwell plan (1984: book) strategy wont work). Men today are look up news paper articles archives that date all the way back to the 1800's an men found out to thier surprise women OWN BUISNESSES/PROPERTY THEY WERE EVEN MANAGERS AT STORES. ONCE THIS IS SHOWN TO THE MASSES ALOOOOT OF WOMEN HAVE ALOT OF EXPLAINING TO DO (ILL TELL YOU THIS MUCH 1950 HOUSE WIFE IS GONE FOR EVER, FEMINIST THOUGHT THEY FREED THEMSELVES, YET INADVERTENTLY FREED MEN FROM BONDAGE OF RESPONSIBILITY FOR PROVIDING/PROTECTING AND HAVING FREE SEXS WITH ENDLESS AMOUNT OF WOMEN (BEFORE MEN WERE FORCE TO MARRY IF THEY WANTED SEX, AN NOW WITH THE ADVENT OF PORN AN SEX DOLLS/TOYS...WELL YOU CAN READ THE WRITING ON THE WALL...AN DIVORCE LAWS/FAMILY LAWS/MARRIAGE LAWS ALL AGAINST MEN...MEN WILL NOT MARRY. YOU MAY SAY WHO CARES, WELL WHEN BIRTH RATES FALL SO DOES WELFARE/SOCIAL SAFTY NETS/SECTION 8 HOUSING/BABY TO DEFEND THE COUNTRY OR REBUILD THE COUNTRY,...MANY BUISNESS WILL SHOUT DOWN/LAW ENFORCEMENT WILL BE LAID OFF/PENSION ARE GOING TO BE A THING OF THE PAST/SCHOOL CLOSURES WILL HAPPEN/ PRISON WILL RELEASE CRIMINALS WAS THERES NOT ENOUGH TAX TO PAID TO CARE FOR PRISONS AN PRISONER...ETC. MEN WILL NOT HELP THIS, MEN KNOW TOOO MUCH!!!!!
+
+-----------------------------
+
+
+incorectulpolitic
+1 day ago
+Must Read ebooks(download, read and share them before they get banned/deleted): 
+
+Virus Mania: How the Medical Industry Continually Invents Epidemics, Making Billion-Dollar Profits At Our Expense by Torsten Engelbrecht(Author), Claus Köhnlein (Contributor): https://www.5gexposed.com/wp-content/uploads/2020/03/Virus-Mania55tt66.pdf
+
+BÉCHAMP or PASTEUR? A Lost Chapter in the History of biology: 
+https://www.mnwelldir.org/docs/history/biographies/Bechamp-or-Pasteur.pdf
+
+OR here: https://archive.org/details/bechamporpasteur00hume_0/page/8/mode/
+
+Electromagnetic Radiation is Genotoxic: https://pdfs.semanticscholar.org/3fb0/144129aa2d25615295fa401418baf6dd6f30.pdf?_ga=2.78110804.1928195418.1596472559-448939896.1596472559
+
+Dirty Big Pharma Truth: http://www.dirtybigpharmatruth.com/the-false-foundations-of-modern-medicine.html
+
+Viruses Can't Spread - Why The COVID-19 Virus Doesn't Exist And Is Exosomes (Banned By Youtube): https://www.bitchute.com/video/hGsTnJ77wh99/
+
+P.S. Hitler started with ‘’science’’, ‘’doctors’’, ‘’experts’’ and medical tyranny.
+CARING CORRUPTED - The Killing Nurses of The Third Reich: https://www.youtube.com/watch?v=Rz8ge4aw8Ws&list=PLrmWCgjy8Vh_Rx2cgPOszXBTzP2yrbENu&index=135
+
+P.P.S. COMMUNISTS/BOLSHEVIKS ALWAYS HAVE THE POLICE AND ARMY PERSONNEL ALL WEAR COMMUNIST/BOLSHEVIK UNIFORMS ON THE DAY AFTER THE ‘REVOLUTION’. 
+
+THE PEOPLE WHO WERE SHOT FIRST WERE SMALL AND MEDIUM BUSINESS'S OWNERS, THE ‘’CONSPIRACY THEORISTS’’, OR BETTER SAID THE COINCIDENCE THEORISTS, THE OLD, THE SNITCHES(yup, snitches were/are useful idiots), PEOPLE WHO COULD READ, PEOPLE WHO WORE EYEGLASSES.
+
+CASTRO GOT HIS ORDERS FROM THE BANK OF CUBA WHICH IS OWNED BY WALL STREET WHICH IS OWNED BY SATAN WORSHIPING PEDO CANNIBALS, WHO OWN AND RUN THE MEDIA/IDIOT BOX.
+THINK ABOUT IT. THINK HARD. IT'S RIGHT IN FRONT OF YOU.
+
+Louis Pasteur Recants His Germ Theory: http://www.susandoreydesigns.com/insights/pasteur-recant.html
+
+Soil Theory vs Germ Theory: http://members.iimetro.com.au/~hubbca/soil.htm#Pasteur
+
+TO BE OR NOT TO BE? 150 Years of Hidden Knowledge: http://www.whale.to/p/bird.html
+
+HOW THE FAKE NEWS ARE MADE: https://www.youtube.com/watch?v=mRRl0LXEwaQ
+
+NIH Removes 5G-Coronavirus Study From Website: https://www.infowars.com/cover-up-nih-removes-5g-coronavirus-study-from-website-following-infowars-expose/
+
+The Ugly Truth About 5G: https://banned.video/watch?id=5cebbcae896f39001248173
+
+It’s just a mask. It’s just six feet. It’s just two weeks. It’s just non-essential businesses. It’s just non-essential workers. It’s just a bar. It’s just a restaurant. It’s just to keep from overwhelming the hospitals. It’s just until the cases go down. It’s just to flatten the curve. It’s just a few inmates. It’s just to keep others from being scared. It’s just for a few more weeks. It’s just church. You could still pray. It’s just prayer. It’s just until we get a vaccine. It’s just a bracelet. It’s just an app. It’s just for tracing. It’s just to let people know you’re safe to be around. It’s just to let others know who you’ve been in contact with. It’s just a few more months. It’s just some more inmates. It’s just a video. It’s just a post. It’s just an email account. It’s just for protecting other from hate speech. It’s just for protecting others from hurt feelings. It’s just a large gathering but for protests. It’s just a few violent protests. It’s just a little micro chip. It’s just a blood test. It’s just a test. It’s just a scan. It’s just for medical information. It’s just to store a vaccination certificate. It’s just like a credit card. It’s just a few places that don’t take cash. It’s just so you can travel. It’s just so you can get your driver’s license. It’s just so you can vote. It’s just mail-in voting. It’s just a few more years. It’s just a statue. It’s just a monument. It’s just a building. It’s just a song. It’s just a lyric. It’s just an anthem. It’s just a few words. It’s just a piece of paper. It’s just a book. It’s just a movie. It’s just a TV show. It’s just a cartoon character. It’s just a piece of cloth. It’s just a flag. It’s just a dog at a protest. It’s just a religion. It’s just a holiday. It's just your guns. It's just the police. It's just the military It's just your freedoms....gone forever. And "It's just" the way they planned it.
+
+“And how we burned in the camps later, thinking: What would things have been like if every Security operative, when he went out at night to make an arrest, had been uncertain whether he would return alive and had to say good-bye to his family? 
+
+Or if, during periods of mass arrests, as for example in Leningrad, when they arrested a quarter of the entire city, people had not simply sat there in their lairs, paling with terror at every bang of the downstairs door and at every step on the staircase, but had understood they had nothing left to lose and had boldly set up in the downstairs hall an ambush of half a dozen people with axes, hammers, pokers, or whatever else was at hand?... 
+
+The Organs would very quickly have suffered a shortage of officers and transport and, notwithstanding all of Stalin's thirst, the cursed machine would have ground to a halt! If...if…
+
+We didn't love freedom enough. And even more – we had no awareness of the real situation.... We purely and simply deserved everything that happened afterward.” ― Aleksandr I. Solzhenitsyn , The Gulag Archipelago 1918–1956 
+
+The real, true compounds that ARE causing ALL the health problems ARE reported once in a while but COMPLETELY ignored by the satan worshipping mainstream media whores... but sure they do promote the boogey man, never proven, ridiculous, completely out of touch with reality, delusional germ theory(invented and promoted by a satan worshipping pedo freemason):
+
+https://www.theguardian.com/environment/2019/nov/27/impact-of-air-pollution-on-health-may-be-far-worse-than-thought-study-suggests
+
+https://www.dailymail.co.uk/sciencetech/article-7715309/Light-pollution-driving-INSECT-APOCALYPSE-scientists-claim.html
+
+https://www.dailymail.co.uk/health/article-7755847/Breathing-London-air-like-smoking-160-cigarettes-year.html
+
+https://www.dailymail.co.uk/health/article-7804993/Living-polluted-cities-make-likely-depressed-attempt-suicide.html
+
+https://www.dailymail.co.uk/health/article-7763401/Cutting-air-pollution-brings-health-benefits-WEEKS.html
+
+https://off-guardian.org/2019/12/03/dont-look-dont-see-pesticides-in-the-msm/
+
+https://www.dailymail.co.uk/health/article-7810811/Switching-unleaded-petrol-caused-dementia-rates-fall-15-year-Europe-North-America.html
+
+The same deaths that go unreported every year are being given a new diagnosis: co(n)vid19(84). 🤣😂😅
+Diabolically genius level to take over the world. They know the sheeple are dumber than a second coat of paint.
+There are only 7 viruses:
+1. Stockholm Syndrome
+2. Cognitive Dissonance
+3. Milgram Experiment
+4. Normalcy Bias
+5. Learned Helplessness
+6. The worship of the idiotbox/ teLIEvision with the con/scam artists in it
+7. Statism 
+
+--------------------------------------------------------------
+
+

@@ -1,0 +1,296 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+alt + t
+	xfce4-terminal
+alt + l
+	xfce4-terminal
+super + Return
+	xfce4-terminal
+super + c
+	xfce4-terminal
+
+# ungoogled chromium
+#alt + c
+#	chromium
+# vifm
+alt + v
+	xfce4-terminal -e vifm
+super + v
+	xfce4-terminal -e vifm
+
+# web browser
+alt + w
+	firefox
+super + w
+	firefox
+
+# ncdu
+alt + n
+	xfce4-terminal -e ncdu
+super + n
+	xfce4-terminal -e ncdu
+
+# htop
+alt + h
+	xfce4-terminal -e htop
+
+# broot
+alt + b
+	xfce4-terminal -e broot
+super + b
+	xfce4-terminal -e broot
+
+# pulseaudio control
+alt + p
+	pavucontrol
+super + p
+	pavucontrol
+
+# lf
+alt + k
+	xfce4-terminal -e lf
+super + k
+	xfce4-terminal -e lf
+
+# vim
+#alt + i
+#	xfce4-terminal -e vim
+
+# File Manager caja
+alt + f
+	thunar
+super + f
+	thunar
+# Rofi
+alt + z
+	rofi -show drun -show-icons
+super + z
+	rofi -show drun -show-icons
+
+# program launcher
+#super + @space
+#	j4-dmenu-desktop
+#	dmenu_run
+
+# Rofi window switcher
+super + a
+	rofi -show window -show-icons
+alt + a
+	rofi -show window -show-icons
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# sxhkd cheatsheet
+super + F1
+	~/.scripts/cheastsheetsxhkd.sh
+
+# rofi locate script
+alt + r
+#	~/.scripts/rofi-locate.sh
+	xdg-open "$(locate home media | rofi -threads 0 -width 100 -dmenu -i -p "locate:")"
+super + r	
+	xdg-open "$(locate home media | rofi -threads 0 -width 100 -dmenu -i -p "locate:")"
+	
+#
+# bspwm hotkeys
+#
+#XF86AudioRaiseVoume, XF86AudioLowerVolume
+#XF86MonBrightnessUp, XF86MonBrightnessDown
+#
+
+XF86AudioRaiseVolume
+	amixer sset Master 4%+	
+
+XF86AudioLowerVolume
+	amixer sset Master 4%-
+
+XF86AudioMute
+	pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 153%	
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+alt + {_,shift + }F4
+	bspc node -{c,k}
+alt + period 
+	bspc node -c
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node (in any workspace, not necessarily the current one)
+super + g
+	bspc node -s biggest
+
+# swap window with direction
+super + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east}
+
+#super + shift + {left,down,up,right}	(doesn't work, terminal reads super+shift+arrow as different characters)
+#	bspc node -s {west,south,north,east}
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local
+#super + {_,shift + }Tab
+#	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+alt + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+ctrl + alt + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+super + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# reset the gap/padding on the polybar when you change the bar height
+# super + u
+#      polybar-msg cmd toggle; bspc config bottom_padding 0
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9}
+	bspc {desktop -f,node -d} '^{1-9}'
+ctrl + alt + {1-9}
+	bspc {desktop -f,node -d} '^{1-9}'
+
+# send window to desktop and swap to that desktop
+#super + ctrl + {1-9} (fuckin not working)
+#	bpsc node -d {1-9} && bspc desktop -f {1-9}
+
+#dwm-style 'tagged' workspaces (apparently not working for me, but reddit guy says it works)
+super + alt + {1-9}
+  	bspc desktop -f focused:^{1-9}
+
+#send to the next or previous desktop (not working)
+#ctrl + alt + shift + {Left,Right}
+#	bspc node -d '{prev,next}.local'
+
+# send node to next/previous monitor and focus (could try to adapt this to same monitor)
+# super + shift + control + bracket{left,right}
+# 	bspc node -m {prev,next} --follow
+
+# preselect
+
+# preselect the direction
+#super + ctrl + {h,j,k,l}
+#	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+#super + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+#super + ctrl + space
+#	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+#super + ctrl + shift + space
+#	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	#/home/mgtow1/.scripts/bspwmresizeone.sh <east|west|north|south>
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + alt + {Left,Down,Up,Right}
+	#/home/mgtow1/.scripts/bspwmresizeone.sh <east|west|north|south>
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+#super + alt + shift + {l,k,j,h}
+#	bspc node -z {right 0 20,top -20 0,bottom 20 0,left 0 -20}
+#super + alt + shift + {Right,Up,Down,Left}
+#	bspc node -z {right 0 20,top -20 0,bottom 20 0,left 0 -20}
+
+# contract a window by moving one of its sides inward
+#super + alt + shift + {h,j,k,l}
+#     bspc node @{east -r -10,north -r +10,south -r -10,west -r +10}
+#super + alt + shift + {Left,Down,Up,Right}
+#     bspc node @{east -r -10,north -r +10,south -r -10,west -r +10}
+
+# move a floating window
+super + control + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Send window to desktop and swap to desktop
+super + control + {0-9}
+	bspc node -d {0-9} && bspunhide && bspc desktop -f {0-9}
+
+# Swap nodes the tree from the current nodes parent
+super + control + {Up, Down}
+	bspc node @parent -C {forward, backward}
+
+# Rotate the tree from the current nodes parent
+super + control + {Right, Left}
+     	bspc node @parent --rotate {90,270}
+
+# Flip the tree from the current nodes parent
+super + control + {h,j,k,l}
+     	  bspc node @parent -F {vertical,horizontal,horizontal,vertical}
+
+# "Drag to floating" tiled windows or move floating windows. (I disabled it for now not using it.)
+#ctrl + button3
+#	bspdragtofloat
+#ctrl + @button3
+#	bspdragtofloat stop
+#@button3
+#	bspdragtofloat stop
+#~button3
+	:
