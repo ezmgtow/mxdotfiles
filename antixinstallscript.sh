@@ -1,0 +1,2 @@
+sudo apt install xorg xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libasound2-dev libxcb-xtest0-dev libxcb-shape0-dev cmake cmake-data libcairo2-dev libxcb1-dev libxcb-image0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev entr moc-ffmpeg-plugin meson python3-pip jq sxhkd bspwm polybar vifm rofi
+
